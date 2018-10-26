@@ -1,0 +1,167 @@
+import sys
+
+def palindroombepaling():
+    m = 0
+    n = 1
+    f = 0
+    x = str(accumulator)
+    while True:
+        if(m > int(len(str(accumulator)))):
+            break
+        if(n > int(len(str(accumulator)))):
+            break
+        m += 1
+        n += 1
+        if x != x[::-1]:
+            x = x[:-1]
+            f += 1
+        elif x == x[::-1]:
+            print("("+str(accumulator)+",", end='')
+            print(f, end='')
+            print(")")
+            break
+
+
+
+print("Gemaakt door Axel Marijn Brozius en Max van der Hek")
+
+print("\n\nWelkom bij dit programma. Wilt u een document coderen of decoderen,"\
+    " voer coderen in als u wilt coderen en decodren als u wilt decoderen.")
+    
+user_input_keuze=input()
+
+if user_input_keuze == "coderen" or user_input_keuze == "Coderen":
+    x = 1 
+    print("\nWat is de naam van het te coderen bestand?")
+    file = input()
+   
+elif user_input_keuze == "decoderen" or user_input_keuze == "Decoderen":
+    x = 2    
+    print("\nWat is de naam van het te decoderen bestand?")
+    file = input()
+        
+else:
+    print("\nHet ziet er naar uit dat u een typfout gemaakt heeft, probeer het opnieuw.")
+    sys.exit()
+    
+#print("\nWat is daarnaast uw gewesnte naam van het doelbestand?")
+#doelbestand = input()
+#c = doelbestand
+a = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "\\"]
+b = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+
+
+if x == 1:
+    invoer = open(file, "r")
+        
+    teller = 1
+    vorgkar = ""
+    
+    for regel in invoer:
+        for kar in regel:
+            if kar != vorgkar:
+                if teller == 1:
+                    if kar in a:
+                        teller = 1
+                        print(vorgkar+"\\", end='')
+                    elif kar not in a:
+                        teller = 1
+                        print(vorgkar, end='')
+                        
+                elif teller > 1:
+                    if kar in a:
+                        print(vorgkar+str(teller)+"\\", end='')
+                        teller = 1
+                    if kar not in a:
+                        print(vorgkar+str(teller),end='')
+                        teller = 1
+            else:
+                teller += 1
+            vorgkar = kar 
+    print(kar)
+    
+    
+    
+    
+elif x == 2:
+ invoer = open(file, "r")                           #invoer bestand
+    
+    
+    
+for regel in invoer:                                #Lees bestand regel voor regel
+          
+      kopiekar = ""                                 #Variabele kopiekar geeft te kopiëren karakter aan
+      aantal = 0                                    #Variabele aantal keer printen wordt gedefinieerd met standaardwaarde 0
+      backslash = 0                                 #Variabele backslash wordt gedefinieerd en standaard op 0 (false) gezet.
+      accumulator = 0
+      c = 0
+      d = 0
+      for kar in regel:                             #Lees bestand karakter voor karakter       
+         if kar == "\\":                            #Kijkt of kar gelijk is aan \
+             if kopiekar != "":                     #Kijkt of kopiekar niet leeg is
+                 if aantal == 0:                      #Kijkt of karakter 1x geprint moet worden
+                     print(kopiekar, end='')
+                     if kar in b:
+                         c = str(kopiekar)
+                         d = 0
+                     else:
+                         c = 0
+                         d = 0
+                     
+                 else:
+                     print(kopiekar*aantal, end='')  #Anders wordt karakter meerdere keren geprint
+                     if kar in b:
+                         d = str(kopiekar*aantal)
+                         c = 0
+                     else:
+                         c = 0
+                         d = 0
+             kopiekar = ""                      #Kopiekar wordt weer leeg gemaakt
+             aantal = 0                         #Aantal wordt gereset naar 0
+             
+             if backslash == 0:                     #Er wordt gekeken of kopiekar een backslash is
+                 backslash = 1                      #Zo ja, dan wordt backslash 1 (true)
+             else:
+                 kopiekar = "\\"                    #Als backslash true is wordt kopiekar een backslash
+                 backslash = 0                      #Backslash wordt gereset naar 0 (false)
+                 
+         elif kopiekar + kar == ":P":
+             palindroombepaling()
+             
+         
+         elif kopiekar + kar == ":R":
+             accumulator = 0
+             
+             
+         else:                                      #Kar is geen backslash
+             backslash = 0                          #Backslash wordt gereset naar 0 (false) wanneer kopiekar leeg is
+             if kopiekar == "":                     #Er wordt gekeken of kopiekar leeg is
+                 kopiekar = kar                     #Zo ja, kopiekar wordt kar
+             else:
+                if kar in a:                        #Zo nee, wordt gekeken of kar in lijst a zit
+                    aantal = 10* aantal + int(kar)  #Zo ja, aantal wordt berekend
+                    if kar in b:
+                        if aantal == 0:
+                            c = str(kar)
+                            d = 0
+                        else:
+                            d = str(kar*aantal)
+                            c = 0
+                else:
+                    if aantal == 0:                      #Kijkt of karakter 1x geprint moet worden
+                        print(kopiekar, end='')
+                    else:
+                        print(kopiekar*aantal, end='')  #Anders wordt karakter meerdere keren geprint
+                        
+                    kopiekar = kar                 #kopiekar wordt kar
+                    aantal = 0                     #aantal wordt gereset naar 0
+                    #accumulator = accumulator + int(c+d)
+
+         e = int(str(c) + str(d))
+         accumulator = accumulator + int(e)
+         print(accumulator)  
+         c = 0
+         d = 0
+      if kopiekar != "":                           #Laatste karakter wordt geprint aan eind regel als kopiekar niet leeg is 
+          print(kopiekar, end='')
+          
