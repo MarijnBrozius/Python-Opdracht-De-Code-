@@ -1,0 +1,34 @@
+Twe2de en moeilijkere testinvoer vo2r Program2e2rmethoden (De)Code
+
+Dan nu backslashes en o2k codewo2rden.
+
+Hier begint de tekst we2r.
+Nu de backslashes:
+Eerst e2n: \\, dan twe2 \\2, en drie \\3 en vier \\4
+Of ve2l: \\60 tot zover;
+of a2n het eind van e2n regel: \\43
+Of a2n het begin:
+\\17 Stop.
+
+\1\03
+\2\02
+\2\0
+\1
+:P
+\3\03
+:P
+:R
+\1\2\3\4\015
+\4\03
+\3\02
+\2\0
+:P
+\1
+:P
+
+
+\\16 asdf asdf
+
+En nog wat codewo2rden:R, nu cryptisch op \1 regel.\1\03@\2\02$\2\0A\0:P\3\03:P:RQ\1\2\3\4\015=\4\03=\3\02=\2\0:P=\1:P
+
+Einde
