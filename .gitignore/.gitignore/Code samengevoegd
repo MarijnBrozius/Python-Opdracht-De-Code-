@@ -1,0 +1,112 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct 26 14:48:54 2018
+
+@author: Marijn
+"""
+
+
+import sys
+def printdecoded (kopiekar, aantal):     #Definieerd functie voor decoderen
+    if aantal == 0:                      #Kijkt of karakter 1x geprint moet worden
+        print(kopiekar, end='')
+    else:
+        print(kopiekar*aantal, end='')  #Anders wordt karakter meerdere keren geprint
+
+def palindroombepaling():
+    m = 0
+    n = 1
+    f = 0                                       #Teller f voor hoeveelheid verwijderde getallen
+    x = str(accumulator)                             #Variabele x wordt accumulator zodat x veranderd kan worden zonder dat accumulator veranderd
+    while True:                                 #Loop loopt oneindig door
+        if(m > int(len(str(accumulator)))):          #Wanneer m groter wordt dan het aantal getallen in de accumulator stopt de bepaling
+            break
+        if(n > int(len(str(accumulator)))):          #Wanneer n groter wordt dan het aantal getallen in de accumulator stopt de bepaling
+            break
+        m += 1
+        n += 1
+        if x != x[::-1]:                        #Kijkt of accumulator niet gelijk is aan omgekeerde accumulator
+            x = x[:-1]                          #Als niet gelijk wordt laatste getal verwijderd
+            f += 1                              #teller f gaat met 1 omhoog
+        elif x == x[::-1]:                      #Kijkt of accumulator gelijk is aan omgekeerde accumulator
+            print("("+str(accumulator)+",", end='')  #print (accumulator, f)
+            print(f, end='')
+            print(")")
+            break                               #Stopt de bepaling
+
+
+
+print("Gemaakt door Axel Marijn Brozius en Max van der Hek")
+
+print("\n\nWelkom bij dit programma. Wilt u een document coderen of decoderen,"\
+    " voer coderen in als u wilt coderen en decodren als u wilt decoderen.")
+    
+user_input_keuze=input()
+
+if user_input_keuze == "coderen" or user_input_keuze == "Coderen":
+    x = 1 
+    print("\nWat is de naam van het te coderen bestand?")
+    file = input()
+   
+elif user_input_keuze == "decoderen" or user_input_keuze == "Decoderen":
+    x = 2    
+    print("\nWat is de naam van het te decoderen bestand?")
+    file = input()
+        
+else:
+    print("\nHet ziet er naar uit dat u een typfout gemaakt heeft, probeer het opnieuw.")
+    sys.exit()
+    
+#print("\nWat is daarnaast uw gewesnte naam van het doelbestand?")
+#doelbestand = input()
+#c = doelbestand
+a = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "\\"]
+
+
+if x == 2:
+ invoer = open(file, "r")                           #invoer bestand
+    
+    
+    
+for regel in invoer:                                #Lees bestand regel voor regel
+          
+      kopiekar = ""                                 #Variabele kopiekar geeft te kopiëren karakter aan
+      aantal = 0                                    #Variabele aantal keer printen wordt gedefinieerd met standaardwaarde 0
+      backslash = 0                                 #Variabele backslash wordt gedefinieerd en standaard op 0 (false) gezet.
+      for kar in regel:                             #Lees bestand karakter voor karakter       
+         if kar == "\\":                            #Kijkt of kar gelijk is aan \
+             if kopiekar != "":                     #Kijkt of kopiekar niet leeg is
+                 printdecoded(kopiekar, aantal)     #Decodeert stuk voor wanneer kopiekar niet leeg is   
+
+                 kopiekar = ""                      #Kopiekar wordt weer leeg gemaakt
+                 aantal = 0                         #Aantal wordt gereset naar 0
+                 
+             if backslash == 0:                     #Er wordt gekeken of kopiekar een backslash is
+                 backslash = 1                      #Zo ja, dan wordt backslash 1 (true)
+             else:
+                 kopiekar = "\\"                    #Als backslash true is wordt kopiekar een backslash
+                 backslash = 0                      #Backslash wordt gereset naar 0 (false)
+         
+         elif kopiekar + kar == ":P":
+             palindroombepaling()
+             kopiekar = "" 
+         
+         elif kopiekar + kar == ":R":
+             accumulator = 0
+             kopiekar = ""
+         else:
+             backslash = 0                          #Backslash wordt gereset naar 0 (false) wanneer kopiekar leeg is
+             if kopiekar == "":                     #Er wordt gekeken of kopiekar leeg is
+                 kopiekar = kar                     #Zo ja, kopiekar wordt kar
+             else:
+                if kar in a:                        #Zo nee, wordt gekeken of kar in lijst a zit
+                    aantal = 10* aantal + int(kar)  #Zo ja, aantal wordt berekend
+                else:
+                    printdecoded(kopiekar, aantal) #Zo nee, gewone decodeerprocedure
+                        
+                    kopiekar = kar                 #kopiekar wordt kar
+                    aantal = 0                     #aantal wordt gereset naar 0
+        
+      if kopiekar != "":                           #Laatste karakter wordt geprint aan eind regel als kopiekar niet leeg is 
+          print(kopiekar, end='')
+          
